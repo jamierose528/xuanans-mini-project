@@ -29,18 +29,32 @@ inquirer
         name: 'github',
     },
   ])
-  .then((response) =>
-    response.confirm === response.password
-      ? console.log('Success!')
-      : console.log('You forgot your password already?!')
-  );
+  
 /////////////////////////name, location, bio, LinkedIn URL, and GitHub URL.
 
 
-  .then((data) => {
-    const filename = `${data.name.toLowerCase().split(' ').join('')}.json`;
-
-    fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
+  .then((response) => {
+    const filename = `index.html`;
+    //`${data.name.toLowerCase().split(' ').join('')}.html`
+    var html=`<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+      <h1>${response.name}</h1>
+      <h1>${response.location}</h1>
+      <h2>${response.bio}</h2>
+      <h2>${response.linkedin}</h2>
+      <h2>${response.github}</h2>
+      
+        
+    </body>
+    </html> `
+    fs.writeFile(filename, html, (err) =>
       err ? console.log(err) : console.log('Success!')
     );
   });
